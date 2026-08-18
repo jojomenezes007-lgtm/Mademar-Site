@@ -32,13 +32,33 @@ footer{background:#050504;color:#aaa;padding:45px 0;font-size:11px}.float{positi
  .bottom-controls{padding:5px}
  .bottom-controls .spin360{min-width:82px}
 }
+
+/* V6 — visualizador 360 realmente interativo */
+.stage{touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.door3d{will-change:transform}
+.door-front{overflow:hidden}
+.door-front:before{content:"";position:absolute;inset:16px;background:none}
+.door-front:after{z-index:3}
+.door3d.model-0 .door-front:before{background:repeating-linear-gradient(0deg,transparent 0 43px,#4f2914 44px 48px)}
+.door3d.model-1 .door-front:before{background:repeating-linear-gradient(0deg,transparent 0 35px,#593018 36px 39px)}
+.door3d.model-2 .door-front:before{inset:28px 22px;background:linear-gradient(42deg,transparent 46%,#512a13 47% 51%,transparent 52%),linear-gradient(-42deg,transparent 46%,#512a13 47% 51%,transparent 52%);background-size:100% 52%;background-position:center top,center bottom;background-repeat:no-repeat}
+.door3d.model-3 .door-front:before{inset:30px 34px;background:linear-gradient(#0000,#0000);border:7px solid #512a13;box-shadow:0 150px 0 -7px #0000,0 150px 0 0 #512a13}
+.door3d.model-4 .door-front:before{inset:28px 92px;background:linear-gradient(90deg,#4d2915,#7c4927,#4d2915);box-shadow:inset 0 0 0 2px #3e2415}
+.door3d.model-5 .door-front:before{inset:34px 42px 105px;background:linear-gradient(145deg,#bcd5d5cc,#6d979bcc);border:8px solid #4d2b17;box-shadow:inset 0 0 25px #fff4}
+.door3d.model-5 .door-back{background:linear-gradient(110deg,#5c3218,#996039 45%,#553019)}
+.viewer-status{position:absolute;left:50%;top:46px;transform:translateX(-50%);padding:7px 11px;border-radius:999px;background:#080806b8;border:1px solid #ffffff26;color:#ddd;font-size:10px;opacity:0;transition:.2s;pointer-events:none}
+.viewer-status.show{opacity:1}
+.bottom-controls button:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.bottom-controls .spin360.running{background:linear-gradient(135deg,#735229,#9d6a34)}
+@media(max-width:650px){.stage{touch-action:pan-y}.hint{top:18px;font-size:10px}.viewer-status{top:40px}}
+
 </style>
 </head>
 <body>
 <header><div class="wrap nav"><a class="logo" href="#">M<span>1</span> MADEMAR<small>MADEIRAS</small></a><nav><a href="#inicio">Início</a><a href="#produtos">Produtos⌄</a><a href="#obra">Para sua obra</a><a href="#telhado">Para seu telhado</a><a href="#moveis">Para seus móveis</a><a href="#portas">Portas e janelas</a><a href="#ferragens">Ferragens e ferramentas</a><a href="#acabamentos">Acabamentos</a><a href="#lojas">Nossas lojas</a><a href="#contato">Contato</a></nav><div class="topcontact"><span class="wa-dot">◉</span><span>Fale com um especialista<br><b>(11) 4605-2732</b></span></div><a class="btn gold" href="#orcamento">Solicitar orçamento</a></div></header>
 
 <section class="hero" id="inicio"><div class="wrap"><div class="hero-copy"><div class="eyebrow">Portas de alto padrão</div><h1>Portas que valorizam seu projeto</h1><p>Modelos variados, qualidade em cada detalhe e acabamento impecável.</p><div class="trust"><div>♧<br>Madeira de<br>qualidade</div><div>◉<br>Acabamento<br>premium</div><div>▦<br>Diversos<br>modelos</div><div>◌<br>Atendimento<br>especializado</div></div><div class="actions"><a class="btn gold" href="#orcamento">Solicitar orçamento ◌</a><a class="btn outline" href="#portas">Ver todos os modelos</a></div></div>
-<div class="viewer"><div class="stage" id="stage"><div class="stage-bg"></div><div class="hint">Arraste a porta para girar • deslize no celular</div><div class="platform"></div><div class="door3d" id="door3d"><div class="door-front"></div><div class="door-back"></div><div class="door-side"></div></div><div class="viewer-label"><div class="eyebrow">Visualização 360°</div><h3>Porta Pivotante<br>Madeira Maciça</h3><p>Explore todos os ângulos do modelo.</p><div class="degree"><span id="degree">0</span>°</div></div><div class="viewer-bottom"><div class="bottom-controls"><button id="left" aria-label="Girar para esquerda">‹</button><button id="auto" class="spin360" aria-label="Girar 360 graus">↻ <span>360°</span></button><button id="right" aria-label="Girar para direita">›</button><button id="reset" aria-label="Voltar ao início">⟲</button></div><button class="thumb active" data-model="0"><img src="assets/product-0.svg"></button><button class="thumb" data-model="1"><img src="assets/product-1.svg"></button><button class="thumb" data-model="2"><img src="assets/product-2.svg"></button><button class="thumb" data-model="3"><img src="assets/product-3.svg"></button><button class="thumb" data-model="4"><img src="assets/product-4.svg"></button><button class="thumb" data-model="5"><img src="assets/product-5.svg"></button><a class="btn gold viewer-cta" href="#orcamento">Solicitar orçamento ◌</a></div></div></div></div></section>
+<div class="viewer"><div class="stage" id="stage"><div class="stage-bg"></div><div class="hint">Arraste a porta para girar • deslize no celular</div><div class="viewer-status" id="viewerStatus">Visualização atualizada</div><div class="platform"></div><div class="door3d model-0" id="door3d"><div class="door-front"></div><div class="door-back"></div><div class="door-side"></div></div><div class="viewer-label"><div class="eyebrow">Visualização 360°</div><h3>Porta Pivotante<br>Madeira Maciça</h3><p>Explore todos os ângulos do modelo.</p><div class="degree"><span id="degree">0</span>°</div></div><div class="viewer-bottom"><div class="bottom-controls"><button id="left" aria-label="Girar para esquerda">‹</button><button id="auto" class="spin360" aria-label="Girar 360 graus">↻ <span>360°</span></button><button id="right" aria-label="Girar para direita">›</button><button id="reset" aria-label="Voltar ao início">⟲</button></div><button class="thumb active" data-model="0"><img src="assets/product-0.svg"></button><button class="thumb" data-model="1"><img src="assets/product-1.svg"></button><button class="thumb" data-model="2"><img src="assets/product-2.svg"></button><button class="thumb" data-model="3"><img src="assets/product-3.svg"></button><button class="thumb" data-model="4"><img src="assets/product-4.svg"></button><button class="thumb" data-model="5"><img src="assets/product-5.svg"></button><a class="btn gold viewer-cta" href="#orcamento">Solicitar orçamento ◌</a></div></div></div></div></section>
 
 <section class="section" id="portas"><div class="wrap"><div class="section-head"><div><div class="eyebrow" style="color:#8c541f">Conheça nossa linha</div><h2>Portas em destaque</h2></div><p>Uma linha completa de portas para todos os estilos de projetos. Beleza, resistência e qualidade que valorizam cada ambiente.</p></div><div class="models">
 <div class="card"><span class="badge">360°</span><img src="assets/product-0.svg"><h3>Porta Pivotante Madeira Maciça</h3><p>Madeira maciça com design moderno e puxador em inox.</p><div class="card-actions"><a class="btn outline" style="color:#111;border-color:#777" href="#inicio" onclick="selectDoor(0)">Ver em 360° →</a><a class="btn wa" href="https://wa.me/551146052732" target="_blank">◌</a></div></div>
@@ -62,31 +82,144 @@ footer{background:#050504;color:#aaa;padding:45px 0;font-size:11px}.float{positi
 <a class="float" href="https://wa.me/551146052732" target="_blank">◔</a><div class="mobilebar"><a class="btn" style="background:#111;color:#fff" href="#portas">Ver portas</a><a class="btn green" href="https://wa.me/551146052732" target="_blank">WhatsApp</a></div>
 
 <script>
-const door=document.getElementById('door3d'), degree=document.getElementById('degree');let rot=0,drag=false,last=0,auto=false,model=0;
-function draw(){door.style.transform=`translateX(-50%) rotateY(${rot}deg)`;degree.textContent=((rot%360)+360)%360|0}
-function rotate(d){rot+=d;draw()}
-document.getElementById('left').onclick=()=>rotate(-20);
-document.getElementById('right').onclick=()=>rotate(20);
-document.getElementById('reset').onclick=()=>{rot=0;draw()};
-document.getElementById('auto').onclick=()=>{
- auto=!auto;
- document.getElementById('auto').innerHTML=auto?'Ⅱ <span>360°</span>':'↻ <span>360°</span>';
-};
-setInterval(()=>{if(auto)rotate(1)},40);
-document.getElementById('stage').addEventListener('pointerdown',e=>{drag=true;last=e.clientX;document.getElementById('stage').setPointerCapture(e.pointerId)});
-document.getElementById('stage').addEventListener('pointermove',e=>{if(!drag)return;let d=e.clientX-last;if(Math.abs(d)>1){rotate(d*.8);last=e.clientX}});
-document.getElementById('stage').addEventListener('pointerup',()=>drag=false);document.getElementById('stage').addEventListener('pointercancel',()=>drag=false);
-const imgs=[...document.querySelectorAll('.thumb img')];
-function selectDoor(i){
- model=i;
- auto=false;
- document.getElementById('auto').innerHTML='↻ <span>360°</span>';
- imgs.forEach((x,j)=>x.parentElement.classList.toggle('active',j===i));
- rot=0; draw();
- document.getElementById('stage').scrollIntoView({behavior:'smooth',block:'center'});
+const door = document.getElementById('door3d');
+const stage = document.getElementById('stage');
+const degree = document.getElementById('degree');
+const autoBtn = document.getElementById('auto');
+const leftBtn = document.getElementById('left');
+const rightBtn = document.getElementById('right');
+const resetBtn = document.getElementById('reset');
+const statusEl = document.getElementById('viewerStatus');
+const labelTitle = document.querySelector('.viewer-label h3');
+const labelText = document.querySelector('.viewer-label p');
+const thumbs = [...document.querySelectorAll('.thumb')];
+
+const models = [
+  {name:'Porta Pivotante<br>Madeira Maciça', desc:'Explore todos os ângulos do modelo.'},
+  {name:'Porta Lambril', desc:'Frisos horizontais e acabamento elegante.'},
+  {name:'Porta Frisada', desc:'Geometria marcante para projetos contemporâneos.'},
+  {name:'Porta de Madeira<br>Tradicional', desc:'Visual clássico com painéis e madeira aparente.'},
+  {name:'Porta Pivotante Lisa', desc:'Design minimalista e acabamento sofisticado.'},
+  {name:'Porta com Vidro', desc:'Madeira e vidro em uma composição moderna.'}
+];
+
+let rot = 0;
+let dragging = false;
+let lastX = 0;
+let activePointer = null;
+let model = 0;
+let spinFrame = null;
+
+function normalizedAngle(value){ return Math.round(((value % 360) + 360) % 360); }
+function draw(){
+  door.style.transform = `translateX(-50%) rotateY(${rot}deg)`;
+  degree.textContent = normalizedAngle(rot);
 }
-window.selectDoor=selectDoor;
-document.querySelectorAll('.thumb').forEach((x,i)=>x.onclick=()=>selectDoor(i));
+function rotateBy(delta){
+  cancelSpin();
+  rot += delta;
+  draw();
+}
+function showStatus(text){
+  statusEl.textContent = text;
+  statusEl.classList.add('show');
+  clearTimeout(showStatus.t);
+  showStatus.t = setTimeout(()=>statusEl.classList.remove('show'), 1100);
+}
+function cancelSpin(){
+  if(spinFrame){ cancelAnimationFrame(spinFrame); spinFrame = null; }
+  autoBtn.classList.remove('running');
+  autoBtn.disabled = false;
+  autoBtn.innerHTML = '↻ <span>360°</span>';
+}
+function spinOnce(){
+  if(spinFrame) return;
+  const startRot = rot;
+  const startTime = performance.now();
+  const duration = 1450;
+  autoBtn.classList.add('running');
+  autoBtn.disabled = true;
+  autoBtn.innerHTML = '••• <span>360°</span>';
+  function animate(now){
+    const p = Math.min(1, (now - startTime) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);
+    rot = startRot + 360 * eased;
+    draw();
+    if(p < 1){ spinFrame = requestAnimationFrame(animate); }
+    else{
+      rot = startRot + 360;
+      spinFrame = null;
+      autoBtn.classList.remove('running');
+      autoBtn.disabled = false;
+      autoBtn.innerHTML = '↻ <span>360°</span>';
+      draw();
+      showStatus('Giro 360° concluído');
+    }
+  }
+  spinFrame = requestAnimationFrame(animate);
+}
+
+leftBtn.addEventListener('click', e=>{ e.stopPropagation(); rotateBy(-20); });
+rightBtn.addEventListener('click', e=>{ e.stopPropagation(); rotateBy(20); });
+resetBtn.addEventListener('click', e=>{ e.stopPropagation(); cancelSpin(); rot=0; draw(); showStatus('Vista frontal'); });
+autoBtn.addEventListener('click', e=>{ e.stopPropagation(); spinOnce(); });
+
+function pointerDown(e){
+  if(e.target.closest('.viewer-bottom, .viewer-label')) return;
+  cancelSpin();
+  dragging = true;
+  activePointer = e.pointerId;
+  lastX = e.clientX;
+  door.style.cursor = 'grabbing';
+  try{ stage.setPointerCapture(e.pointerId); }catch(_){}
+}
+function pointerMove(e){
+  if(!dragging || e.pointerId !== activePointer) return;
+  const dx = e.clientX - lastX;
+  if(Math.abs(dx) > .4){
+    rot += dx * .72;
+    lastX = e.clientX;
+    draw();
+  }
+}
+function pointerEnd(e){
+  if(e.pointerId !== activePointer) return;
+  dragging = false;
+  activePointer = null;
+  door.style.cursor = 'grab';
+  try{ stage.releasePointerCapture(e.pointerId); }catch(_){}
+}
+stage.addEventListener('pointerdown', pointerDown);
+stage.addEventListener('pointermove', pointerMove);
+stage.addEventListener('pointerup', pointerEnd);
+stage.addEventListener('pointercancel', pointerEnd);
+stage.addEventListener('lostpointercapture', ()=>{ dragging=false; activePointer=null; door.style.cursor='grab'; });
+
+function selectDoor(i){
+  cancelSpin();
+  model = i;
+  door.className = `door3d model-${i}`;
+  thumbs.forEach((x,j)=>x.classList.toggle('active',j===i));
+  labelTitle.innerHTML = models[i].name;
+  labelText.textContent = models[i].desc;
+  rot = 0;
+  draw();
+  showStatus(`Modelo ${i+1} selecionado`);
+  stage.scrollIntoView({behavior:'smooth', block:'center'});
+}
+window.selectDoor = selectDoor;
+thumbs.forEach((x,i)=>x.addEventListener('click', e=>{ e.stopPropagation(); selectDoor(i); }));
+
+// teclado: setas giram, R reseta e espaço executa um giro completo
+stage.tabIndex = 0;
+stage.setAttribute('aria-label','Visualizador 360 graus da porta. Use as setas para girar.');
+stage.addEventListener('keydown', e=>{
+  if(e.key==='ArrowLeft'){ e.preventDefault(); rotateBy(-15); }
+  if(e.key==='ArrowRight'){ e.preventDefault(); rotateBy(15); }
+  if(e.key.toLowerCase()==='r'){ e.preventDefault(); cancelSpin(); rot=0; draw(); }
+  if(e.key===' '){ e.preventDefault(); spinOnce(); }
+});
+
 draw();
 </script>
 </body></html>
